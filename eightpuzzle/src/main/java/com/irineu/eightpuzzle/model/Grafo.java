@@ -5,17 +5,14 @@ import java.util.List;
 
 public class Grafo {
 
-    private List<Puzzle> vertices;
+    private Vertice raiz;
 
-    public Grafo() {
-        this.vertices = new ArrayList<>();
+    public Grafo(Puzzle puzzle) {
+        this.raiz = new Vertice(puzzle);
     }
 
-    public List<Puzzle> getVertices() {
-        return vertices;
+    public Vertice getRaiz() {
+        return raiz;
     }
 
-    public void setVertices(List<Puzzle> vertices) {
-        this.vertices = vertices;
-    }
 }
