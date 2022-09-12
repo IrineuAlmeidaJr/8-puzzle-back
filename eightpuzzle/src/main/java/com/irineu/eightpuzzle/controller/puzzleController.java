@@ -20,8 +20,10 @@ public class puzzleController {
             Grafo grafo = new Grafo(new Puzzle(dados.getEstados()));
             BuscaProfundidade buscaProfundidade = new BuscaProfundidade();
             buscaProfundidade.buscar(grafo, dados.getObjetivo());
-            lista = buscaProfundidade.getVerticesGerados();
+//            lista = buscaProfundidade.getVerticesGerados();
+            lista = buscaProfundidade.getVerticesVisitados();
         }
+
 
         return lista;
     }

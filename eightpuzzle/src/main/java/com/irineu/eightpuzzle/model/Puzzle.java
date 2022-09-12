@@ -1,5 +1,6 @@
 package com.irineu.eightpuzzle.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Puzzle {
@@ -30,37 +31,47 @@ public class Puzzle {
         return pos;
     }
 
+    private List<Character> copiaValores(List<Character> valor) {
+        // Solução para copiar valores e não referência
+        List<Character> auxValor = new ArrayList<>();
+        for(char num : valor) {
+            auxValor.add(num);
+        }
+        return auxValor;
+    }
+
     // Fazer aqui o mover Up, Down, Left, Right
     public Puzzle moveCima() {
         int posTroca = this.posVazio-3;
-        Puzzle novoPuzzle = new Puzzle(valores);
+        Puzzle novoPuzzle = null;
+        Puzzle tempPuzzle = new Puzzle(copiaValores(valores));
         if (posTroca >= 0) {
-           var tempValores = novoPuzzle.getValores();
+           var tempValores = tempPuzzle.getValores();
            char valorTroca = tempValores.get(posTroca);
            // Faz a troca com vazio, com novo valor
            tempValores.set(this.posVazio, valorTroca);
            tempValores.set(posTroca, ' ');
            novoPuzzle = new Puzzle(tempValores);
 
+            System.out.println("\nANTIGO Cima - " + valores);
             System.out.println("NOVO Cima - " + novoPuzzle.getValores());
-            System.out.println("ANTIGO Cima - " + valores);
-        } else {
-            novoPuzzle = null;
         }
         return novoPuzzle;
     }
 
     public Puzzle moveBaixo() {
         int posTroca = this.posVazio+3;
-        Puzzle novoPuzzle = new Puzzle(valores);
+        Puzzle novoPuzzle = null;
+        Puzzle tempPuzzle = new Puzzle(copiaValores(valores));
         if (posTroca < 9) {
-            var tempValores = novoPuzzle.getValores();
+            var tempValores = tempPuzzle.getValores();
             char valorTroca = tempValores.get(posTroca);
             // Faz a troca com vazio, com novo valor
             tempValores.set(this.posVazio, valorTroca);
             tempValores.set(posTroca, ' ');
             novoPuzzle = new Puzzle(tempValores);
 
+            System.out.println("\nANTIGO Cima - " + valores);
             System.out.println("Baixo - " + novoPuzzle.getValores());
         } else {
             novoPuzzle = null;
@@ -70,15 +81,18 @@ public class Puzzle {
 
     public Puzzle moveDireita() {
         int posTroca = this.posVazio+1;
-        Puzzle novoPuzzle = new Puzzle(valores);
+        Puzzle novoPuzzle = null;
+
+        Puzzle tempPuzzle = new Puzzle(copiaValores(valores));
         if (posTroca < 9 && posTroca != 3 && posTroca != 6 ) {
-            var tempValores = novoPuzzle.getValores();
+            var tempValores = tempPuzzle.getValores();
             char valorTroca = tempValores.get(posTroca);
             // Faz a troca com vazio, com novo valor
             tempValores.set(this.posVazio, valorTroca);
             tempValores.set(posTroca, ' ');
             novoPuzzle = new Puzzle(tempValores);
 
+            System.out.println("\nANTIGO Cima - " + valores);
             System.out.println("Direita - " + novoPuzzle.getValores());
         } else {
             novoPuzzle = null;
@@ -88,15 +102,17 @@ public class Puzzle {
 
     public Puzzle moveEsquerda() {
         int posTroca = this.posVazio-1;
-        Puzzle novoPuzzle = new Puzzle(valores);
+        Puzzle novoPuzzle = null;
+        Puzzle tempPuzzle = new Puzzle(copiaValores(valores));
         if (posTroca >= 0 && posTroca != 2 && posTroca != 5 ) {
-            var tempValores = novoPuzzle.getValores();
+            var tempValores = tempPuzzle.getValores();
             char valorTroca = tempValores.get(posTroca);
             // Faz a troca com vazio, com novo valor
             tempValores.set(this.posVazio, valorTroca);
             tempValores.set(posTroca, ' ');
             novoPuzzle = new Puzzle(tempValores);
 
+            System.out.println("\nANTIGO Cima - " + valores);
             System.out.println("Esquerda - " + novoPuzzle.getValores());
         } else {
             novoPuzzle = null;
