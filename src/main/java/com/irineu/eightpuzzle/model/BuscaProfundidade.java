@@ -43,30 +43,32 @@ public class BuscaProfundidade {
         while(!achou && !pilha.isEmpty()) {
             qtde++;
             vertice = pilha.pop();
-            verticesGerados.add(vertice);
-            verticesVisitados.add(vertice);
+            if(!pilha.isEmpty()) {
+                verticesGerados.add(vertice);
+                verticesVisitados.add(vertice);
 //            System.out.println("\n\nVertice ADD -> " + vertice.getPuzzle().getValores());
-            if (!vertice.getPuzzle().getValores().equals(objetivo)) {
-                vertice.setVisitado(true);
+                if (!vertice.getPuzzle().getValores().equals(objetivo)) {
+                    vertice.setVisitado(true);
 
-                // Aqui pode gerar até 4 vertices
-                vertice.gerarVertices(verticesGerados);
-                for (int i=0; i < vertice.getTl(); i++) {
-                    pilha.add(vertice.getvLig(i));
-                    verticesGerados.add(vertice.getvLig(i));
+                    // Aqui pode gerar até 4 vertices
+                    vertice.gerarVertices(verticesGerados);
+                    for (int i = 0; i < vertice.getTl(); i++) {
+                        pilha.add(vertice.getvLig(i));
+                        verticesGerados.add(vertice.getvLig(i));
+                    }
+                } else {
+                    achou = true;
                 }
-            } else {
-                achou = true;
-            }
 
-            System.out.println("Qtde = " + qtde);
-            desenha(vertice.getPuzzle());
+                System.out.println("Qtde = " + qtde);
+                desenha(vertice.getPuzzle());
 //            System.out.println(vertice.getPuzzle().getValores());
 //            try {
 //                Thread.sleep(5000);
 //            } catch (InterruptedException e) {
 //                throw new RuntimeException(e);
 //            }
+            }
         }
         // TESTE
         System.out.println("\n\n *******************\n\nQuantidade TOTAL REP = " + qtde);
