@@ -53,8 +53,8 @@ public class Puzzle {
            tempValores.set(posTroca, ' ');
            novoPuzzle = new Puzzle(tempValores);
 
-            System.out.println("\nANTIGO Cima - " + valores);
-            System.out.println("NOVO Cima - " + novoPuzzle.getValores());
+//            System.out.println("\nANTIGO Cima - " + valores);
+//            System.out.println("NOVO Cima - " + novoPuzzle.getValores());
         }
         return novoPuzzle;
     }
@@ -71,8 +71,8 @@ public class Puzzle {
             tempValores.set(posTroca, ' ');
             novoPuzzle = new Puzzle(tempValores);
 
-            System.out.println("\nANTIGO Cima - " + valores);
-            System.out.println("Baixo - " + novoPuzzle.getValores());
+//            System.out.println("\nANTIGO Cima - " + valores);
+//            System.out.println("Baixo - " + novoPuzzle.getValores());
         } else {
             novoPuzzle = null;
         }
@@ -92,8 +92,8 @@ public class Puzzle {
             tempValores.set(posTroca, ' ');
             novoPuzzle = new Puzzle(tempValores);
 
-            System.out.println("\nANTIGO Cima - " + valores);
-            System.out.println("Direita - " + novoPuzzle.getValores());
+//            System.out.println("\nANTIGO Cima - " + valores);
+//            System.out.println("Direita - " + novoPuzzle.getValores());
         } else {
             novoPuzzle = null;
         }
@@ -112,8 +112,8 @@ public class Puzzle {
             tempValores.set(posTroca, ' ');
             novoPuzzle = new Puzzle(tempValores);
 
-            System.out.println("\nANTIGO Cima - " + valores);
-            System.out.println("Esquerda - " + novoPuzzle.getValores());
+//            System.out.println("\nANTIGO Cima - " + valores);
+//            System.out.println("Esquerda - " + novoPuzzle.getValores());
         } else {
             novoPuzzle = null;
         }

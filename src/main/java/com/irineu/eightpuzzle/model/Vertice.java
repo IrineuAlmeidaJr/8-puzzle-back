@@ -2,18 +2,21 @@ package com.irineu.eightpuzzle.model;
 
 import com.irineu.eightpuzzle.interfaces.Size;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vertice implements Size {
 
     private Puzzle puzzle;
     Vertice vLig[];
+    List<Vertice> verticesVisitados;
     Boolean visitado;
     int tl;
 
     public Vertice(Puzzle puzzle) {
         this.puzzle = puzzle;
         this.vLig = new Vertice[N];
+        this.verticesVisitados = new ArrayList<>();
         this.visitado = false;
         this.tl = 0;
     }
@@ -45,6 +48,8 @@ public class Vertice implements Size {
     public void setTl(int tl) {
         this.tl = tl;
     }
+
+
 
 
     private boolean verificaNovoVertice(Puzzle gerado, List<Vertice> verticesVisitados) {
