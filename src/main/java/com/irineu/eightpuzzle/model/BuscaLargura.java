@@ -1,19 +1,20 @@
 package com.irineu.eightpuzzle.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
-public class BuscaProfundidade {
+public class BuscaLargura {
+
 
     private List<Vertice> verticesVisitados;
     private List<Vertice> verticesGerados;
-    private Stack<Vertice> pilha;
+    private LinkedList<Vertice> fila;
 
-    public BuscaProfundidade() {
-        this.verticesVisitados = new ArrayList<Vertice>();
-        this.verticesGerados = new ArrayList<Vertice>();
-        this.pilha = new Stack<Vertice>();
+    public BuscaLargura() {
+        this.verticesVisitados = new ArrayList<>();
+        this.verticesGerados = new ArrayList<>();
+        this.fila = new LinkedList<Vertice>();
     }
 
     public List<Vertice> getVerticesVisitados() {
@@ -34,10 +35,10 @@ public class BuscaProfundidade {
         boolean achou = false;
         Vertice vertice = grafo.getRaiz();
 
-        pilha.push(vertice);
-        while(!achou && !pilha.isEmpty()) {
+        fila.addLast(vertice);
+        while(!achou && !fila.isEmpty()) {
             qtde++;
-            vertice = pilha.pop();
+            vertice = fila.removeFirst();
             verticesGerados.add(vertice);
             verticesVisitados.add(vertice);
             if (!vertice.getPuzzle().getValores().equals(objetivo)) {
@@ -46,7 +47,7 @@ public class BuscaProfundidade {
                 // Aqui pode gerar até 4 vertices
                 vertice.gerarVertices(verticesGerados);
                 for (int i=0; i < vertice.getTl(); i++) {
-                    pilha.add(vertice.getvLig(i));
+                    fila.addLast(vertice.getvLig(i));
                     verticesGerados.add(vertice.getvLig(i));
                 }
             } else {
@@ -67,4 +68,5 @@ public class BuscaProfundidade {
         System.out.println("\n\n *******************\n\nQuantidade TOTAL REP = " + qtde);
         System.out.println("ACHOU -> " + achou);
     }
+
 }

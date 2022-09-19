@@ -13,17 +13,20 @@ public class puzzleController {
 
     @PostMapping("/buscarsolucao")
     public List<Vertice> buscarSolucao(@RequestBody EntradaDados dados) {
-
+        Grafo grafo = new Grafo(new Puzzle(dados.getEstados()));
         List<Vertice> lista = new ArrayList<>();
 
-        if (dados.getTipoBusca() == 1) {
-            Grafo grafo = new Grafo(new Puzzle(dados.getEstados()));
-            BuscaProfundidade buscaProfundidade = new BuscaProfundidade();
-            buscaProfundidade.buscar(grafo, dados.getObjetivo());
-//            lista = buscaProfundidade.getVerticesGerados();
-            lista = buscaProfundidade.getVerticesVisitados();
+        switch (dados.getTipoBusca()) {
+            case 1: BuscaProfundidade buscaProfundidade = new BuscaProfundidade();
+                    buscaProfundidade.buscar(grafo, dados.getObjetivo());
+//                    lista = buscaProfundidade.getVerticesGerados();
+                    lista = buscaProfundidade.getVerticesVisitados();
+                    break;
+            case 2: BuscaLargura buscaLargura = new BuscaLargura();
+                    buscaLargura.buscar(grafo, dados.getObjetivo());
+                    lista = buscaLargura.getVerticesVisitados();
+                    break;
         }
-
 
         return lista;
     }
