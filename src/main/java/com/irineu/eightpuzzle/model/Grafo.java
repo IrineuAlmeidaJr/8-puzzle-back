@@ -7,6 +7,10 @@ public class Grafo {
 
     private Vertice raiz;
 
+
+    public Grafo() {
+    }
+
     public Grafo(Puzzle puzzle) {
         this.raiz = new Vertice(puzzle);
     }

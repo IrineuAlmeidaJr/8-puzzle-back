@@ -1,0 +1,11 @@
+com/irineu/eightpuzzle/EightpuzzleApplication.class
+com/irineu/eightpuzzle/controller/puzzleController.class
+com/irineu/eightpuzzle/model/CalcularDistanciaManhattan.class
+com/irineu/eightpuzzle/model/Vertice.class
+com/irineu/eightpuzzle/model/Puzzle.class
+com/irineu/eightpuzzle/model/BuscaLargura.class
+com/irineu/eightpuzzle/model/EntradaDados.class
+com/irineu/eightpuzzle/model/BuscaProfundidade.class
+com/irineu/eightpuzzle/interfaces/Size.class
+com/irineu/eightpuzzle/model/Grafo.class
+com/irineu/eightpuzzle/config/CorsConfiguration.class
