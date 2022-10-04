@@ -31,18 +31,22 @@ public class puzzleController {
                         vertice.desenha();
                     }
                     System.out.println("TEMPO - > " + buscaProfundidade.getTempoGasto() + "ms");
-                    saidaDados = new SaidaDados(verticesVisitados, solucao, buscaProfundidade.getTempoGasto());
+                    saidaDados = new SaidaDados("DFS", verticesVisitados, solucao, buscaProfundidade.getTempoGasto());
                     break;
             case 2: BuscaLargura buscaLargura = new BuscaLargura();
                     buscaLargura.buscar(grafo, dados.getObjetivo());
                     solucao = buscaLargura.getSolucao();
                     verticesVisitados = buscaLargura.getVerticesVisitados();
 
-                    for (Vertice vertice: solucao) {
-                        vertice.desenha();
-                    }
+                    System.out.println("-----------\n- - - BFS - - -");
+//                    for (Vertice vertice: solucao) {
+//                        vertice.desenha();
+//                    }
+
                     System.out.println("TEMPO - > " + buscaLargura.getTempoGasto() + "ms");
-                    saidaDados = new SaidaDados(verticesVisitados, solucao, buscaLargura.getTempoGasto());
+                    System.out.println("MOVIMENTOS -> " + buscaLargura.getVerticesVisitados().size());
+
+                saidaDados = new SaidaDados("BFS", verticesVisitados, solucao, buscaLargura.getTempoGasto());
 
                     break;
             case 3: BuscaA buscaA = new BuscaA();
@@ -50,11 +54,14 @@ public class puzzleController {
                     solucao = buscaA.getSolucao();
                     verticesVisitados = buscaA.getVerticesVisitados();
 
-                    for (Vertice vertice: solucao) {
-                        vertice.desenha();
-                    }
+                    System.out.println("\n- - - - - - - - - - -" +
+                            "\n- - - Busca A* - - -");
+//                    for (Vertice vertice: solucao) {
+//                        vertice.desenha();
+//                    }
                     System.out.println("TEMPO - > " + buscaA.getTempoGasto() + "ms");
-                    saidaDados = new SaidaDados(verticesVisitados, solucao, buscaA.getTempoGasto());
+                    System.out.println("MOVIMENTOS -> " + buscaA.getVerticesVisitados().size());
+                    saidaDados = new SaidaDados("A*", verticesVisitados, solucao, buscaA.getTempoGasto());
                     break;
         }
         System.out.println();

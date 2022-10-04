@@ -4,6 +4,7 @@ import java.util.List;
 
 public class SaidaDados {
 
+    private String nomeMetodo;
     private List<Vertice> verticesVisitados;
     private List<Vertice> verticesSolucao;
     private int qtdePassos;
@@ -14,12 +15,17 @@ public class SaidaDados {
     public SaidaDados() {
     }
 
-    public SaidaDados(List<Vertice> verticesVisitados, List<Vertice> verticesSolucao,long tempo) {
+    public SaidaDados(String nomeMetodo, List<Vertice> verticesVisitados, List<Vertice> verticesSolucao, long tempo) {
+        this.nomeMetodo = nomeMetodo;
         this.verticesVisitados = verticesVisitados;
         this.verticesSolucao = verticesSolucao;
         this.qtdePassos = verticesVisitados.size();
         this.caminhoSolucao = verticesSolucao.size();
         this.tempo = tempo;
+    }
+
+    public String getNomeMetodo() {
+        return nomeMetodo;
     }
 
     public List<Vertice> getVerticesVisitados() {

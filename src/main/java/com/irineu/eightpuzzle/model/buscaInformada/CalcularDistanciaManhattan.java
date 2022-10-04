@@ -9,7 +9,7 @@ public class CalcularDistanciaManhattan {
     public int calcular(List<Character> estadoFinal, List<Character> estadoAtual) {
         int distanciaManhattan = 0;
         int estFinal, estAtual;
-        for(int i=0; i<0; i++){
+        for(int i=0; i<9; i++){
             estAtual= estadoFinal.get(i);
             estFinal = estadoAtual.get(i);
             distanciaManhattan += Math.abs(estAtual - estFinal) ;

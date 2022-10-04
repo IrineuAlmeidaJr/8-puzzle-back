@@ -29,18 +29,16 @@ public class Vertice implements Size {
         this.visitado = false;
         this. fa = 0;
         this.fc = 0;
-        this.somaFaFc = 0;
         this.tl = 0;
     }
 
-    public Vertice(Puzzle puzzle, Vertice[] vLig, List<Vertice> verticesVisitados, boolean visitado, int fa, int fc, int somaFaFc, int tl) {
+    public Vertice(Puzzle puzzle, Vertice[] vLig, List<Vertice> verticesVisitados, boolean visitado, int fa, int fc, int tl) {
         this.puzzle = puzzle;
         this.vLig = vLig;
         this.verticesVisitados = verticesVisitados;
         this.visitado = visitado;
         this.fa = fa;
         this.fc = fc;
-        this.somaFaFc = somaFaFc;
         this.tl = tl;
     }
 
@@ -92,14 +90,6 @@ public class Vertice implements Size {
         this.fc = fc;
     }
 
-    public int getSomaFaFc() {
-        return somaFaFc;
-    }
-
-    public void setSomaFaFc(int somaFaFc) {
-        this.somaFaFc = somaFaFc;
-    }
-
     public int getFaFc() {
         return this.fa + this.fc;
     }
@@ -123,7 +113,7 @@ public class Vertice implements Size {
     }
 
     public void setVerticeVisitado(Vertice vertice) {
-        this.verticesVisitados.add(new Vertice(vertice.getPuzzle(), vertice.getvLig(), vertice.getVerticesVisitados(), vertice.getVisitado(), vertice.getFa(), vertice.getFc(), vertice.getSomaFaFc(), vertice.getTl()));
+        this.verticesVisitados.add(new Vertice(vertice.getPuzzle(), vertice.getvLig(), vertice.getVerticesVisitados(), vertice.getVisitado(), vertice.getFa(), vertice.getFc(), vertice.getTl()));
     }
 
     public void desenha() {
@@ -176,8 +166,8 @@ public class Vertice implements Size {
     }
 
     public void calculaFa(List<Character> objetivo) {
-        this.fa = 0;
-//        this.fa = new CalcularDistanciaManhattan().calcular(puzzle.getValores(), objetivo);
+//        this.fa = 0;
+        this.fa = new CalcularDistanciaManhattan().calcular(puzzle.getValores(), objetivo);
     }
 
 
