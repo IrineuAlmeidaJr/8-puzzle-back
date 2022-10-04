@@ -2,6 +2,7 @@ package com.irineu.eightpuzzle.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.irineu.eightpuzzle.interfaces.Size;
+import com.irineu.eightpuzzle.model.buscaInformada.CalcularDistanciaManhattan;
 
 
 import java.util.*;
@@ -15,6 +16,7 @@ public class Vertice implements Size {
     private boolean visitado;
     private int fa;
     private int fc;
+    private int somaFaFc;
     private int tl;
 
     public Vertice() {
@@ -27,16 +29,18 @@ public class Vertice implements Size {
         this.visitado = false;
         this. fa = 0;
         this.fc = 0;
+        this.somaFaFc = 0;
         this.tl = 0;
     }
 
-    public Vertice(Puzzle puzzle, Vertice[] vLig, List<Vertice> verticesVisitados, boolean visitado, int fa, int fc, int tl) {
+    public Vertice(Puzzle puzzle, Vertice[] vLig, List<Vertice> verticesVisitados, boolean visitado, int fa, int fc, int somaFaFc, int tl) {
         this.puzzle = puzzle;
         this.vLig = vLig;
         this.verticesVisitados = verticesVisitados;
         this.visitado = visitado;
         this.fa = fa;
         this.fc = fc;
+        this.somaFaFc = somaFaFc;
         this.tl = tl;
     }
 
@@ -88,6 +92,18 @@ public class Vertice implements Size {
         this.fc = fc;
     }
 
+    public int getSomaFaFc() {
+        return somaFaFc;
+    }
+
+    public void setSomaFaFc(int somaFaFc) {
+        this.somaFaFc = somaFaFc;
+    }
+
+    public int getFaFc() {
+        return this.fa + this.fc;
+    }
+
     public boolean isVisitado() {
         return visitado;
     }
@@ -107,7 +123,16 @@ public class Vertice implements Size {
     }
 
     public void setVerticeVisitado(Vertice vertice) {
-        this.verticesVisitados.add(new Vertice(vertice.getPuzzle(), vertice.getvLig(), vertice.getVerticesVisitados(), vertice.getVisitado(), vertice.getFa(), vertice.getFc(), vertice.getTl()));
+        this.verticesVisitados.add(new Vertice(vertice.getPuzzle(), vertice.getvLig(), vertice.getVerticesVisitados(), vertice.getVisitado(), vertice.getFa(), vertice.getFc(), vertice.getSomaFaFc(), vertice.getTl()));
+    }
+
+    public void desenha() {
+        var valores = this.puzzle.getValores();
+        System.out.println("\n-----------");
+        System.out.println("| " + valores.get(0) + "  " + valores.get(3) + "  " +valores.get(6) + " |");
+        System.out.println("| " + valores.get(1) + "  " + valores.get(4) + "  " +valores.get(7) + " |");
+        System.out.println("| " + valores.get(2) + "  " + valores.get(5) + "  " +valores.get(8) + " |");
+        System.out.println("-----------");
     }
 
     private boolean verificaNovoVertice(Puzzle gerado, List<Vertice> verticesVisitados) {
@@ -128,7 +153,6 @@ public class Vertice implements Size {
 
         tempPuzzle = this.puzzle.moveCima();
         if (tempPuzzle != null && verificaNovoVertice(tempPuzzle, verticesVisitados)) {
-            System.out.println("Tem mater original " + puzzle.getValores());
             this.vLig[this.tl++] = new Vertice(tempPuzzle);
 
         }
@@ -151,12 +175,10 @@ public class Vertice implements Size {
 //        return verticesGerados;
     }
 
-    public void desenha() {
-        var valores = this.puzzle.getValores();
-        System.out.println("\n-----------");
-        System.out.println("| " + valores.get(0) + "  " + valores.get(3) + "  " +valores.get(6) + " |");
-        System.out.println("| " + valores.get(1) + "  " + valores.get(4) + "  " +valores.get(7) + " |");
-        System.out.println("| " + valores.get(2) + "  " + valores.get(5) + "  " +valores.get(8) + " |");
-        System.out.println("-----------");
+    public void calculaFa(List<Character> objetivo) {
+        this.fa = 0;
+//        this.fa = new CalcularDistanciaManhattan().calcular(puzzle.getValores(), objetivo);
     }
+
+
 }

@@ -1,24 +1,27 @@
-package com.irineu.eightpuzzle.model.buscasCegas;
+package com.irineu.eightpuzzle.model.buscaNaoInformada;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.irineu.eightpuzzle.model.Grafo;
 import com.irineu.eightpuzzle.model.Vertice;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
-public class BuscaProfundidade {
+public class BuscaLargura {
 
+    @JsonManagedReference
     private List<Vertice> verticesVisitados;
+    @JsonManagedReference
     private List<Vertice> verticesGerados;
-    private Stack<Vertice> pilha;
+    private LinkedList<Vertice> fila;
     private Vertice solucao;
     private long tempoGasto;
 
-    public BuscaProfundidade() {
-        this.verticesVisitados = new ArrayList<Vertice>();
-        this.verticesGerados = new ArrayList<Vertice>();
-        this.pilha = new Stack<Vertice>();
+    public BuscaLargura() {
+        this.verticesVisitados = new ArrayList<>();
+        this.verticesGerados = new ArrayList<>();
+        this.fila = new LinkedList<Vertice>();
     }
 
     public List<Vertice> getVerticesVisitados() {
@@ -39,11 +42,11 @@ public class BuscaProfundidade {
         boolean achou = false;
         tini = System.currentTimeMillis();
         Vertice vertice = grafo.getRaiz();
-        this.solucao = vertice; // Só para quando se der erro não sair sem nada
-        pilha.push(vertice);
-        while(!achou && !pilha.isEmpty()) {
+        solucao = vertice; // Só para quando se der erro não sair sem nada
+        fila.addLast(vertice);
+        while(!achou && !fila.isEmpty()) {
             qtde++;
-            vertice = pilha.pop();
+            vertice = fila.removeFirst();
             vertice.setVerticeVisitado(vertice);
             verticesGerados.add(vertice);
             verticesVisitados.add(vertice);
@@ -53,7 +56,7 @@ public class BuscaProfundidade {
                 vertice.gerarVertices(verticesGerados);
                 for (int i=0; i < vertice.getTl(); i++) {
                     vertice.getvLig(i).setVerticesVisitados(vertice.getVerticesVisitados());
-                    pilha.add(vertice.getvLig(i));
+                    fila.addLast(vertice.getvLig(i));
                     verticesGerados.add(vertice.getvLig(i));
                 }
             } else {
@@ -64,4 +67,5 @@ public class BuscaProfundidade {
         tfim = System.currentTimeMillis();
         this.tempoGasto = tfim - tini;
     }
+
 }

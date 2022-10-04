@@ -1,8 +1,9 @@
 package com.irineu.eightpuzzle.controller;
 
 import com.irineu.eightpuzzle.model.*;
-import com.irineu.eightpuzzle.model.buscasCegas.BuscaLargura;
-import com.irineu.eightpuzzle.model.buscasCegas.BuscaProfundidade;
+import com.irineu.eightpuzzle.model.buscaInformada.BuscaA;
+import com.irineu.eightpuzzle.model.buscaNaoInformada.BuscaLargura;
+import com.irineu.eightpuzzle.model.buscaNaoInformada.BuscaProfundidade;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,28 +23,39 @@ public class puzzleController {
 
         switch (dados.getTipoBusca()) {
             case 1: BuscaProfundidade buscaProfundidade = new BuscaProfundidade();
-                buscaProfundidade.buscar(grafo, dados.getObjetivo());
-                verticesVisitados = buscaProfundidade.getVerticesVisitados();
-                solucao = buscaProfundidade.getSolucao();
+                    buscaProfundidade.buscar(grafo, dados.getObjetivo());
+                    verticesVisitados = buscaProfundidade.getVerticesVisitados();
+                    solucao = buscaProfundidade.getSolucao();
 
-                for (Vertice vertice: solucao) {
-                    vertice.desenha();
-                }
-                System.out.println("TEMPO - > " + buscaProfundidade.getTempoGasto() + "ms");
-                saidaDados = new SaidaDados(verticesVisitados, solucao, buscaProfundidade.getTempoGasto());
-                break;
+                    for (Vertice vertice: solucao) {
+                        vertice.desenha();
+                    }
+                    System.out.println("TEMPO - > " + buscaProfundidade.getTempoGasto() + "ms");
+                    saidaDados = new SaidaDados(verticesVisitados, solucao, buscaProfundidade.getTempoGasto());
+                    break;
             case 2: BuscaLargura buscaLargura = new BuscaLargura();
-                buscaLargura.buscar(grafo, dados.getObjetivo());
-                solucao = buscaLargura.getSolucao();
-                verticesVisitados = buscaLargura.getVerticesVisitados();
+                    buscaLargura.buscar(grafo, dados.getObjetivo());
+                    solucao = buscaLargura.getSolucao();
+                    verticesVisitados = buscaLargura.getVerticesVisitados();
 
-                for (Vertice vertice: solucao) {
-                    vertice.desenha();
-                }
-                System.out.println("TEMPO - > " + buscaLargura.getTempoGasto() + "ms");
-                saidaDados = new SaidaDados(verticesVisitados, solucao, buscaLargura.getTempoGasto());
+                    for (Vertice vertice: solucao) {
+                        vertice.desenha();
+                    }
+                    System.out.println("TEMPO - > " + buscaLargura.getTempoGasto() + "ms");
+                    saidaDados = new SaidaDados(verticesVisitados, solucao, buscaLargura.getTempoGasto());
 
-                break;
+                    break;
+            case 3: BuscaA buscaA = new BuscaA();
+                    buscaA.buscar(grafo, dados.getObjetivo());
+                    solucao = buscaA.getSolucao();
+                    verticesVisitados = buscaA.getVerticesVisitados();
+
+                    for (Vertice vertice: solucao) {
+                        vertice.desenha();
+                    }
+                    System.out.println("TEMPO - > " + buscaA.getTempoGasto() + "ms");
+                    saidaDados = new SaidaDados(verticesVisitados, solucao, buscaA.getTempoGasto());
+                    break;
         }
         System.out.println();
         return saidaDados;

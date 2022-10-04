@@ -1,27 +1,24 @@
-package com.irineu.eightpuzzle.model.buscasCegas;
+package com.irineu.eightpuzzle.model.buscaNaoInformada;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.irineu.eightpuzzle.model.Grafo;
 import com.irineu.eightpuzzle.model.Vertice;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
-public class BuscaLargura {
+public class BuscaProfundidade {
 
-    @JsonManagedReference
     private List<Vertice> verticesVisitados;
-    @JsonManagedReference
     private List<Vertice> verticesGerados;
-    private LinkedList<Vertice> fila;
+    private Stack<Vertice> pilha;
     private Vertice solucao;
     private long tempoGasto;
 
-    public BuscaLargura() {
-        this.verticesVisitados = new ArrayList<>();
-        this.verticesGerados = new ArrayList<>();
-        this.fila = new LinkedList<Vertice>();
+    public BuscaProfundidade() {
+        this.verticesVisitados = new ArrayList<Vertice>();
+        this.verticesGerados = new ArrayList<Vertice>();
+        this.pilha = new Stack<Vertice>();
     }
 
     public List<Vertice> getVerticesVisitados() {
@@ -42,11 +39,11 @@ public class BuscaLargura {
         boolean achou = false;
         tini = System.currentTimeMillis();
         Vertice vertice = grafo.getRaiz();
-        solucao = vertice; // Só para quando se der erro não sair sem nada
-        fila.addLast(vertice);
-        while(!achou && !fila.isEmpty()) {
+        this.solucao = vertice; // Só para quando se der erro não sair sem nada
+        pilha.push(vertice);
+        while(!achou && !pilha.isEmpty()) {
             qtde++;
-            vertice = fila.removeFirst();
+            vertice = pilha.pop();
             vertice.setVerticeVisitado(vertice);
             verticesGerados.add(vertice);
             verticesVisitados.add(vertice);
@@ -56,7 +53,7 @@ public class BuscaLargura {
                 vertice.gerarVertices(verticesGerados);
                 for (int i=0; i < vertice.getTl(); i++) {
                     vertice.getvLig(i).setVerticesVisitados(vertice.getVerticesVisitados());
-                    fila.addLast(vertice.getvLig(i));
+                    pilha.add(vertice.getvLig(i));
                     verticesGerados.add(vertice.getvLig(i));
                 }
             } else {
@@ -67,5 +64,4 @@ public class BuscaLargura {
         tfim = System.currentTimeMillis();
         this.tempoGasto = tfim - tini;
     }
-
 }
