@@ -10,9 +10,10 @@ public class CorsConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://127.0.0.1:5173/") // Endereço do FrontEnd
+                .allowedOrigins("https://8-puzzle-front.vercel.app") // Endereço do FrontEnd
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
 
-//        .allowedOrigins("https://8-puzzle-front.vercel.app") // Endereço do FrontEnd
+//                .allowedOrigins("http://127.0.0.1:5173/") // Endereço do FrontEnd
+
     }
 }
