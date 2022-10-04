@@ -86,7 +86,8 @@ public class BuscaA {
                 solucao = vertice;
                 achou = true;
             }
-            vertice.desenha();
+            System.out.println("- - Resolvendo");
+//            vertice.desenha();
 //            System.out.println("FA+FC= "+ vertice.getFaFc());
         }
         tfim = System.currentTimeMillis();

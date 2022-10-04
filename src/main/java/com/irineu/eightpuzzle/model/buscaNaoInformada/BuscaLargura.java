@@ -63,7 +63,7 @@ public class BuscaLargura {
                 solucao = vertice;
                 achou = true;
             }
-            vertice.desenha();
+            System.out.println("- - Resolvendo");
         }
         tfim = System.currentTimeMillis();
         this.tempoGasto = tfim - tini;

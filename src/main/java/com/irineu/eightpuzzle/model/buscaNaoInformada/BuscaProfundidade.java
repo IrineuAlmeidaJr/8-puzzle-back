@@ -3,6 +3,7 @@ package com.irineu.eightpuzzle.model.buscaNaoInformada;
 import com.irineu.eightpuzzle.model.Grafo;
 import com.irineu.eightpuzzle.model.Vertice;
 
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -60,6 +61,7 @@ public class BuscaProfundidade {
                 solucao = vertice;
                 achou = true;
             }
+            System.out.println("- - Resolvendo");
         }
         tfim = System.currentTimeMillis();
         this.tempoGasto = tfim - tini;

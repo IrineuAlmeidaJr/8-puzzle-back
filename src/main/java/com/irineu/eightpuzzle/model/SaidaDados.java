@@ -28,10 +28,6 @@ public class SaidaDados {
         return nomeMetodo;
     }
 
-    public List<Vertice> getVerticesVisitados() {
-        return verticesVisitados;
-    }
-
     public List<Vertice> getVerticesSolucao() {
         return verticesSolucao;
     }

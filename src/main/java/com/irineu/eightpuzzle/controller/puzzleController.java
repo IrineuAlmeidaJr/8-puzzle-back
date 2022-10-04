@@ -27,9 +27,10 @@ public class puzzleController {
                     verticesVisitados = buscaProfundidade.getVerticesVisitados();
                     solucao = buscaProfundidade.getSolucao();
 
-                    for (Vertice vertice: solucao) {
-                        vertice.desenha();
-                    }
+                    System.out.println("-----------\n- - - DFS - - -");
+//                    for (Vertice vertice: solucao) {
+//                        vertice.desenha();
+//                    }
                     System.out.println("TEMPO - > " + buscaProfundidade.getTempoGasto() + "ms");
                     saidaDados = new SaidaDados("DFS", verticesVisitados, solucao, buscaProfundidade.getTempoGasto());
                     break;
@@ -42,11 +43,10 @@ public class puzzleController {
 //                    for (Vertice vertice: solucao) {
 //                        vertice.desenha();
 //                    }
-
                     System.out.println("TEMPO - > " + buscaLargura.getTempoGasto() + "ms");
                     System.out.println("MOVIMENTOS -> " + buscaLargura.getVerticesVisitados().size());
 
-                saidaDados = new SaidaDados("BFS", verticesVisitados, solucao, buscaLargura.getTempoGasto());
+                    saidaDados = new SaidaDados("BFS", verticesVisitados, solucao, buscaLargura.getTempoGasto());
 
                     break;
             case 3: BuscaA buscaA = new BuscaA();
@@ -65,6 +65,7 @@ public class puzzleController {
                     break;
         }
         System.out.println();
+        System.out.println("\n- - - FIM - - - \n");
         return saidaDados;
     }
 
