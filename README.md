@@ -9,7 +9,7 @@ Adotou Spring para fazer essa comunicação entre aplicação web, irá solucion
 </p>
 
 <h2 align="center"><a href="https://8-puzzle-front.vercel.app">Clique aqui para ver meu projeto!</a></h2>
- <strong>OBS1</strong>: devido o deploy realizado no heroku de forma gratuita, em alguns casos irá demorar para obter o resultado.</br>
+ <strong>OBS1</strong>: devido o deploy realizado no heroku de forma gratuita, em alguns casos irá demorar para obter o resultado. Demora conectar na primeira tentativa</br>
  <strong>OBS2</strong>: BFS é um método de busca mais demorado, pode ser que solução não seja encontrada em um tempo hábil. 
 
 
