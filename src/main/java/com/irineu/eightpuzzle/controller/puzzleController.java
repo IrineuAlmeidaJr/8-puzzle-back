@@ -4,6 +4,8 @@ import com.irineu.eightpuzzle.model.*;
 import com.irineu.eightpuzzle.model.buscaInformada.BuscaA;
 import com.irineu.eightpuzzle.model.buscaNaoInformada.BuscaLargura;
 import com.irineu.eightpuzzle.model.buscaNaoInformada.BuscaProfundidade;
+import com.irineu.eightpuzzle.model.formatoDados.EntradaDados;
+import com.irineu.eightpuzzle.model.formatoDados.SaidaDados;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,6 @@
-package com.irineu.eightpuzzle.model;
+package com.irineu.eightpuzzle.model.formatoDados;
+
+import com.irineu.eightpuzzle.model.Vertice;
 
 import java.util.List;
 

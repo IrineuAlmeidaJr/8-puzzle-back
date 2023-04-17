@@ -10,7 +10,7 @@ import java.util.*;
 public class Vertice implements Size {
 
     private Puzzle puzzle;
-    private Vertice vLig[];
+    private Vertice arrestas[];
     @JsonBackReference
     private List<Vertice> verticesVisitados;
     private boolean visitado;
@@ -24,7 +24,7 @@ public class Vertice implements Size {
 
     public Vertice(Puzzle puzzle) {
         this.puzzle = puzzle;
-        this.vLig = new Vertice[N];
+        this.arrestas = new Vertice[N];
         this.verticesVisitados = new ArrayList<>();
         this.visitado = false;
         this. fa = 0;
@@ -34,7 +34,7 @@ public class Vertice implements Size {
 
     public Vertice(Puzzle puzzle, Vertice[] vLig, List<Vertice> verticesVisitados, boolean visitado, int fa, int fc, int tl) {
         this.puzzle = puzzle;
-        this.vLig = vLig;
+        this.arrestas = vLig;
         this.verticesVisitados = verticesVisitados;
         this.visitado = visitado;
         this.fa = fa;
@@ -46,16 +46,16 @@ public class Vertice implements Size {
         return puzzle;
     }
 
-    public Vertice[] getvLig() {
-        return vLig;
+    public Vertice[] getArrestas() {
+        return arrestas;
     }
 
     public Vertice getvLig(int pos) {
-        return vLig[pos];
+        return arrestas[pos];
     }
 
     public void setvLig(int pos, Vertice lig) {
-        this.vLig[pos] = lig;
+        this.arrestas[pos] = lig;
     }
 
     public Boolean getVisitado() {
@@ -113,7 +113,7 @@ public class Vertice implements Size {
     }
 
     public void setVerticeVisitado(Vertice vertice) {
-        this.verticesVisitados.add(new Vertice(vertice.getPuzzle(), vertice.getvLig(), vertice.getVerticesVisitados(), vertice.getVisitado(), vertice.getFa(), vertice.getFc(), vertice.getTl()));
+        this.verticesVisitados.add(new Vertice(vertice.getPuzzle(), vertice.getArrestas(), vertice.getVerticesVisitados(), vertice.getVisitado(), vertice.getFa(), vertice.getFc(), vertice.getTl()));
     }
 
     public void desenha() {
@@ -143,23 +143,23 @@ public class Vertice implements Size {
 
         tempPuzzle = this.puzzle.moveCima();
         if (tempPuzzle != null && verificaNovoVertice(tempPuzzle, verticesVisitados)) {
-            this.vLig[this.tl++] = new Vertice(tempPuzzle);
+            this.arrestas[this.tl++] = new Vertice(tempPuzzle);
 
         }
 
         tempPuzzle = this.puzzle.moveBaixo();
         if (tempPuzzle != null && verificaNovoVertice(tempPuzzle, verticesVisitados)) {
-            this.vLig[this.tl++] = new Vertice(tempPuzzle);
+            this.arrestas[this.tl++] = new Vertice(tempPuzzle);
         }
 
         tempPuzzle = this.puzzle.moveDireita();
         if (tempPuzzle != null && verificaNovoVertice(tempPuzzle, verticesVisitados)) {
-            this.vLig[this.tl++] = new Vertice(tempPuzzle);
+            this.arrestas[this.tl++] = new Vertice(tempPuzzle);
         }
 
         tempPuzzle = this.puzzle.moveEsquerda();
         if (tempPuzzle != null && verificaNovoVertice(tempPuzzle, verticesVisitados)) {
-            this.vLig[this.tl++] = new Vertice(tempPuzzle);
+            this.arrestas[this.tl++] = new Vertice(tempPuzzle);
         }
 
 //        return verticesGerados;
